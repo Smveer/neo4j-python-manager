@@ -1,0 +1,7 @@
+{
+  "NEO4J_URI" : "neo4j+s://ea75dcfe.databases.neo4j.io",
+  "NEO4J_USERNAME" : "neo4j",
+  "NEO4J_PASSWORD" : "OMbmthv4qDYXuhFRsa8BC9tDTp9r5R5mlGcaGF75Ttc",
+  "AURA_INSTANCE_ID" : "ea75dcfe",
+  "AURA_INSTANCE_NAME" : "Instance01"
+}
