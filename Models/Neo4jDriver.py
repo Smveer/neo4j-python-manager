@@ -59,3 +59,15 @@ class Neo4jDriver:
             element = item.data()
             year_results.append(element)
         return year_results
+
+    def get_team_results(
+            self,
+            team: str
+    ) -> list:
+        team_results = []
+        q = "MATCH (t:Team where t.name=$team)-[r:PLAY_FINAL]-(f:Final) return t, f, r.winner"
+        records, summary, keys = self.driver.execute_query(q, team=team)
+        for item in records:
+            element = item.data()
+            team_results.append(element)
+        return team_results

@@ -32,7 +32,15 @@ while True:
             print(f"{d} - {i['name']}")
         continue
     elif choice == 3:
-
+        team = input("Entrez le nom de l'équipe svp: ")
+        results = n.get_team_results(team)
+        if len(results) != 0:
+            for i in results:
+                r = i['f']
+                t = i['t']
+                print(f"Final of {r['year']}, Team {t['name']} {i['r.winner'] if i['r.winner'] else 'lost'}")
+        else:
+            print("No result found")
         continue
     elif choice == 4:
         year = int(input("Entrez l'année de la finale svp: "))
