@@ -27,3 +27,35 @@ class Neo4jDriver:
                 except Exception as e:
                     print(f"Failed to connect to {self.URI} due to {e}\n")
                     sys.exit(1)
+
+    def get_finals(self) -> list:
+        finals = []
+        q = "MATCH (f:Final) RETURN f;"
+        records, summary, keys = self.driver.execute_query(q)
+
+        for item in records:
+            element = item.data()["f"]
+            finals.append(element)
+        return finals
+
+    def get_final_teams(self) -> list:
+        final_teams = []
+        q = "MATCH (t:Team) RETURN t;"
+        records, summary, keys = self.driver.execute_query(q)
+
+        for item in records:
+            element = item.data()["t"]
+            final_teams.append(element)
+        return final_teams
+
+    def get_year_results(
+            self,
+            year: int
+    ) -> list:
+        year_results = []
+        q = "MATCH (f:Final where f.year=$year)-[r:PLAY_FINAL]-(t:Team) return f, t, r.winner"
+        records, summary, keys = self.driver.execute_query(q, year=year)
+        for item in records:
+            element = item.data()
+            year_results.append(element)
+        return year_results
